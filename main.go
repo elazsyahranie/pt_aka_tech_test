@@ -6,7 +6,9 @@ import (
 	"time"
 
 	"pt_aka_tech_test/helpers"
+	"pt_aka_tech_test/users"
 
+	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -25,7 +27,7 @@ func main() {
 	)
 
 	dsn := helpers.DB_CONNECTION
-	_, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: newLogger,
 	})
 	if err != nil {
@@ -33,4 +35,16 @@ func main() {
 	}
 	// db.AutoMigrate(&book.Book{})
 	fmt.Println("Succesfuly connected to the database!")
+
+	router := gin.Default()
+
+	userRepository := users.NewRepository(db) 
+	userService := users.NewService(userRepository)
+	userHandler := users.NewUserHandler(userService)
+
+	userRoute := router.Group("/users")
+
+	userRoute.POST("/", userHandler.Create)
+
+	router.Run(helpers.PORT) // Will use default port 8000 if it's left empty
 }
