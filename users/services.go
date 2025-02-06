@@ -12,7 +12,7 @@ import (
 
 type Service interface {
 	Register(user PostBody) (User, error)
-	Login (logIn LogInRequest) (string, error)
+	LogIn (logIn LogInRequest) (string, error)
 }
 
 type service struct {
@@ -61,7 +61,7 @@ func (s *service) GenerateToken(dataForToken DataForToken) (string, error) {
 	return tokenString, nil
 }
 
-func (s *service) Login(logInRequest LogInRequest) (string, error) {
+func (s *service) LogIn(logInRequest LogInRequest) (string, error) {
 	user, err := s.repository.FindByEmailLike(logInRequest.Email)
 	if err != nil {
 		return "", errors.New(helpers.UNAUTHORIZED)

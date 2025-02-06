@@ -79,7 +79,7 @@ func (h *userHandler) Login(c *gin.Context) {
 			}
 	}
 
-	token, err := h.userService.Login(logInRequest)
+	token, err := h.userService.LogIn(logInRequest)
 	if err != nil {
 		var httpErrCode = http.StatusInternalServerError;
 		if (err.Error() == helpers.UNAUTHORIZED) {
