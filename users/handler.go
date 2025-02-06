@@ -101,57 +101,6 @@ func (h *userHandler) Login(c *gin.Context) {
 	})
 }
 
-// func (h *userHandler) GetAll(c *gin.Context) {
-// 	// title := c.Query("title")
-// 	// description := c.Query("description")
-
-// 	// var queries Queries
-// 	// if title != "" {
-// 	// 	queries.Title = title
-// 	// }
-// 	// if description!= "" {
-//     //     queries.Description = title
-//     // }
-
-// 	users, err := h.userService.GetAll()
-// 	if err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{
-// 			"errors": err,
-// 		})
-// 	}
-
-// 	var usersResponse []UserResponse
-// 	for _, b := range users {
-//         userResponse := convertToUserResponse(b)
-// 		usersResponse = append(usersResponse, userResponse)
-// 	}
-
-// 	c.JSON(http.StatusOK, gin.H{
-// 		"data": usersResponse,
-// 	})
-// }
-
-// func (h* userHandler) GetProfile(c *gin.Context) {
-// 	ID, exists := c.Get("ID")
-// 	if !exists {
-// 		c.JSON(http.StatusInternalServerError, gin.H{"error": "User ID missing from context"})
-// 		return
-// 	}
-// 	userID, _ := uuid.Parse(ID.(string))
-// 	fmt.Println(userID)
-// 	user, err := h.userService.FindByID(userID)
-// 	if err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{
-// 			"errors": err,
-// 		})
-// 	}
-
-// 	userResponse := convertToUserResponse(user)
-// 	c.JSON(http.StatusOK, gin.H{
-// 		"data": userResponse,
-// 	})
-// }
-
 func convertToUserResponse(b User) UserResponse {
 	return UserResponse{
         ID: b.ID,

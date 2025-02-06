@@ -13,8 +13,6 @@ import (
 type Service interface {
 	Register(user PostBody) (User, error)
 	Login (logIn LogInRequest) (string, error)
-	// FindByID(id uuid.UUID) (User, error)
-	// GetAll() ([]User, error)
 }
 
 type service struct {
@@ -84,13 +82,3 @@ func (s *service) Login(logInRequest LogInRequest) (string, error) {
 
 	return token, err
 }
-
-// func (s *service) FindByID(ID uuid.UUID) (User, error) {
-// 	user, err := s.repository.FindByID(ID)
-// 	return user, err
-// }
-
-// func (s *service) GetAll() ([]User, error) {
-// 	users, err := s.repository.GetAll()
-// 	return users, err
-// }
