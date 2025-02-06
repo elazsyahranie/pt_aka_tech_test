@@ -33,5 +33,4 @@ func main() {
 	}
 	// db.AutoMigrate(&book.Book{})
 	fmt.Println("Succesfuly connected to the database!")
-	
 }
